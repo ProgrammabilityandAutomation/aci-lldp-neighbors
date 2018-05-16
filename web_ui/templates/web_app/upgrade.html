@@ -1,0 +1,67 @@
+<div class="hero hero--indigo" ng-show="logged">
+    <div class="hero__content">
+        <div class="container center-xs">
+            <div class="row">
+                <div class="col-md-8 col-xl-10">
+                    <div class="flex-fluid">
+                        <h1>Upgrade </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" ng-show="logged">
+    <div class="section">
+        <div class="panel panel--loose panel--bordered">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-blue base-margin-bottom">Software Upgrade</h2>
+
+                    <hr/>
+
+                    <div class="form-group__text select ">
+                        <select id="sel_group" name="sel_group"
+                                ng-options="name as group.name for group in groups track by group.name"
+                                ng-model="configuration.selectedGroup">
+                        </select>
+                        <label for="sel_group">Group</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group__text">
+
+                            <input id="upgrade_tftp" ng-model="item.upgradeURL">
+                            <label for="upgrade_tftp">TFTP URL</label>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group__text">
+
+                            <input id="upgrade_username" ng-model="item.username">
+                            <label for="upgrade_username">Devices Username</label>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group__text">
+
+                            <input id="upgrade_password" ng-model="item.password"
+                                   type="password">
+                            <label for="upgrade_password">Devices Password</label>
+
+                        </div>
+
+                    </div>
+                    <br/>
+                    <button class="btn btn--success" style="float:right"
+                            ng-click="upgrade()">
+                        Upgrade
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

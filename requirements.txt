@@ -1,0 +1,7 @@
+django
+djangorestframework
+django-rest-framework
+Jinja2
+requests
+djutils
+pexpect

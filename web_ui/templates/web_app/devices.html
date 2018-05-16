@@ -1,0 +1,120 @@
+<div class="hero hero--indigo" ng-show="logged">
+    <div class="hero__content">
+        <div class="container center-xs">
+            <div class="row">
+                <div class="col-md-8 col-xl-10">
+                    <div class="flex-fluid">
+                        <h1>Devices </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" ng-show="logged">
+    <div class="section">
+        <div class="panel panel--loose panel--bordered">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-blue base-margin-bottom">Devices</h2>
+
+                    <hr/>
+
+                    <button class="btn btn--primary" ng-click="getNeighbors()">Refresh</button>
+
+                    <hr/>
+                    <div class="responsive-table">
+                        <table class="table table--bordered">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>IP</th>
+                                <th>Neighbors</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in neighbors">
+
+                                <td ng-show="!item.details"></td>
+                                <td ng-show="!item.details">{a item.name a}</td>
+                                <td ng-show="!item.details">{a item.mgmtIp a}</td>
+                                <td ng-show="!item.details">
+                                    <div ng-repeat="neighbor in item.neighbors">
+                                        <p>{a neighbor a}</p>
+                                    </div>
+                                </td>
+                                <td colspan="4" ng-show="item.details">
+                                    <div class="col-md-12">
+                                        <br/>
+                                        <h5 class="text-blue base-margin-bottom">Device {a item.name a}</h5>
+                                        <hr/>
+                                        <p>Management IP: {a item.mgmtIp a}</p>
+                                    </div>
+                                    <div class="col-md-12">
+
+                                        <br/>
+                                        <h6 class="base-margin-bottom">Neighbors</h6>
+                                        <hr/>
+                                        <div ng-repeat="neighbor in item.neighbors">
+                                            <p>{a neighbor a}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br/>
+                                        <h6 class="base-margin-bottom">Software Upgrade</h6>
+                                        <hr/>
+                                        <div class="form-group">
+                                            <div class="form-group__text">
+
+                                                <input id="upgradeURL_{a item.name a}" ng-model="item.upgradeURL">
+                                                <label for="upgradeURL_{a item.name a}">TFTP URL</label>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-group__text">
+
+                                                <input id="username_{a item.name a}" ng-model="item.username">
+                                                <label for="username_{a item.name a}">Device Username</label>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-group__text">
+
+                                                <input id="password_{a item.name a}" ng-model="item.password"
+                                                       type="password">
+                                                <label for="password_{a item.name a}">Device Password</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <button class="btn btn--success" style="float:right"
+                                            ng-click="requestUpgrade(item)">
+                                        Upgrade
+                                    </button>
+                                    <br/>
+                                </td>
+
+                                <td class="text-center">
+                                    <button class="btn btn--icon btn--primary"
+                                            ng-click="item.details = !item.details">
+                                        <span ng-show="!item.details" class="icon-maximize"></span>
+                                        <span ng-show="item.details" class="icon-minimize"></span></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

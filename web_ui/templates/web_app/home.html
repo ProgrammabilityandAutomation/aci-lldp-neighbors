@@ -1,0 +1,154 @@
+<div class="hero hero--indigo" ng-show="logged">
+    <div class="hero__content">
+        <div class="container center-xs">
+            <div class="row">
+                <div class="col-md-8 col-xl-10">
+                    <div class="flex-fluid">
+                        <h1>Maintenance Groups </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-show="!logged">
+    <div class="section">
+        <div class="col-md-4 secondary-tabs" style="margin-left:30%">
+            <div class="tab-content">
+                <div id="tab-intro-content" class="tab-pane active" style="min-width: 400px;">
+                    <div class="panel panel--loose panel--bordered">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel--bordered">
+                                    <div ng-if="!apic.logged">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <div class="form-group__text">
+                                                    <input id="sel_apic" name="sel_apic" ng-model="apic.url">
+
+                                                    <label for="sel_apic">APIC</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group__text">
+                                                <input id="username" type="text"
+                                                       ng-model="apic.username">
+                                                <label for="username">Username</label>
+                                            </div>
+                                            <div class="form-group__text">
+                                                <input id="password" type="password"
+                                                       ng-model="apic.password">
+                                                <label for="password">Password</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="text-center">
+                                            <button class="btn btn--primary" ng-click="login();">Login</button>
+                                        </div>
+                                    </div>
+                                    <div ng-if="apic.logged">
+                                        <div class="alert alert--success">
+                                            <div class="alert__icon icon-check"></div>
+                                            <div class="alert__message">You are logged in! Redirecting...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-show="logged">
+    <div class="section">
+        <div class="panel panel--loose panel--bordered">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-blue base-margin-bottom">Groups</h2>
+
+                    <hr/>
+                    <div class="btn-group">
+                        <button class="btn btn--primary-ghost sn-type group-action selected"
+                                onclick="$('.group-action').removeClass('selected');$(this).addClass('selected')"
+                                ng-click="setGroupAction('list')">
+                            List
+                        </button>
+                        <button class="btn btn--primary-ghost sn-type group-action"
+                                onclick="$('.group-action').removeClass('selected');$(this).addClass('selected')"
+                                ng-click="setGroupAction('add')">
+                            Add
+                        </button>
+                    </div>
+                    <hr/>
+                    <div ng-if="groupAction == 'list'">
+                        <div class="responsive-table">
+                            <table class="table table--bordered">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Devices</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in groups">
+                                    <td></td>
+                                    <td>{a item.name a}</td>
+                                    <td>
+                                        <div ng-repeat="device in item.devices">
+                                            <p>{a device.name a}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div ng-if="groupAction == 'add'">
+
+                        <div class="form-group">
+                            <div class="form-group__text">
+                                <input id="groupName" ng-model="group.name">
+                                <label for="groupName">Group Name</label>
+                            </div>
+                        </div>
+                        <p> Select the devices that you want to add to the group</p>
+                        <div class="responsive-table">
+                            <table class="table table--bordered">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>IP</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in neighbors">
+                                    <td>
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="checkbox2" ng-click="addRemoveDeviceToGroup(item)">
+                                            <span class="checkbox__input"></span>
+                                        </label>
+                                    </td>
+                                    <td>{a item.name a}</td>
+                                    <td>{a item.mgmtIp a}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr/>
+                        <button class="btn btn--primary" ng-click="addGroup()" style="float:right">Create Group
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
