@@ -15,8 +15,7 @@ A docker file is included for you to build a container. Follow these commands on
 
 ```bash
 
-docker build -t YOURDOCKERUSER/acilldpneighbor .
-docker run -p 8080:8080 -it YOURDOCKERUSER/acilldpneighbor
+docker run -p 8080:8080 -it sfloresk/acilldpneighbor
 
 ```
 
